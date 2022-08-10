@@ -1,0 +1,9 @@
+{
+    "name": "proy/notas",
+    "autoload": {
+        "psr-4": {
+            "Proy\\Notas\\": "src/"
+        }
+    },
+    "require": {}
+}
