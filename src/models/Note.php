@@ -23,7 +23,7 @@
         }
 
         public function update(){
-            $query = $this->connect()->prepare("UPDATE notes SET title=:title, content =:content, update= NOW() WHERE uuid=:uuid)");
+            $query = $this->connect()->prepare("UPDATE notes SET title=:title, content =:content, updated= NOW() WHERE uuid=:uuid");
             $query->execute(['title'=>$this->title, "uuid"=> $this->uuid, "content" =>$this->content]);
         }
 
@@ -37,6 +37,23 @@
             $note = Note::createFromArray($query->fetch(PDO::FETCH_ASSOC)); // utilizo fetch porque solo quiero el primer elemnto
 
             return $note;
+        }
+
+        public static function getAll(){
+            $notes=[];
+            $db = new DataBase(); // el contructor es lo mismo que crear un nuevo DataBase
+            $query =$db->connect()->query("SELECT * FROM notes");
+            
+            while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
+                $note = Note::createFromArray($r);
+                array_push($notes, $note); //insertamos nota en el arreglo notas 
+                
+            }
+
+           
+
+            return $notes;
+
         }
 
         public static function createFromArray($arr):Note{

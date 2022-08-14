@@ -19,9 +19,16 @@ if (count($_POST) > 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create new Note</title>
+    <link rel="stylesheet" href="src/views/resources/main.css">
 </head>
 <body>
+    <?php
+        require 'resources/navbar.php';
+    ?>
     <h1>CREATE NOTE</h1>
+    <div class="notes-container">
+    
+    
     <form action="?view=create" method="POST">
         <input type ="text" name="title" placeholder="Title.....">
         <textarea name="content"  cols="30" rows="10"></textarea>
